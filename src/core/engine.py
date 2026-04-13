@@ -73,9 +73,12 @@ class ChatbotEngine:
 
         quantization = self.get_quantization_config()
 
+        token = model_config.hf_token
+
         self._tokenizer = AutoTokenizer.from_pretrained(
             target_path,
             trust_remote_code=model_config.trust_remote_code,
+            token=token,
         )
         if self._tokenizer.pad_token is None:
             self._tokenizer.pad_token = self._tokenizer.eos_token
@@ -86,6 +89,7 @@ class ChatbotEngine:
             device_map=model_config.device_map,
             trust_remote_code=model_config.trust_remote_code,
             torch_dtype=torch.float16,
+            token=token,
         )
         self._model.eval()
         self._current_model_path = target_path

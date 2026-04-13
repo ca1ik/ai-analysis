@@ -2,6 +2,8 @@ venv/
 __pycache__/
 *.pyc
 .env
+.env.*
+*.token
 data/models/
 data/processed/
 exports/
@@ -10,3 +12,7 @@ logs/
 dist/
 build/
 .DS_Store
+
+# HuggingFace cache & credentials — NEVER commit
+.cache/huggingface/
+huggingface_token.txt

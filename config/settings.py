@@ -21,7 +21,10 @@ for d in [DATA_DIR, MODELS_DIR, TRAINING_SETS_DIR, EXPORTS_DIR]:
 
 @dataclass
 class ModelConfig:
-    base_model: str = "meta-llama/Meta-Llama-3-8B-Instruct"
+    # Switch models here — Qwen needs no token, LLaMA needs HF_TOKEN env var
+    # base_model: str = "Qwen/Qwen2.5-7B-Instruct"      # Open, no token
+    base_model: str = "meta-llama/Meta-Llama-3-8B-Instruct"  # Needs HF_TOKEN
+    hf_token: Optional[str] = os.environ.get("HF_TOKEN")  # NEVER hardcode
     quantization: str = "4bit"  # 4bit QLoRA for RTX 5070 12GB
     max_seq_length: int = 2048
     dtype: str = "float16"
@@ -40,13 +43,13 @@ class TrainingConfig:
         "gate_proj", "up_proj", "down_proj"
     ])
 
-    # Training hyperparameters
-    num_epochs: int = 3
-    batch_size: int = 4
-    gradient_accumulation_steps: int = 4
-    learning_rate: float = 2e-4
-    warmup_ratio: float = 0.03
-    weight_decay: float = 0.001
+    # Training hyperparameters — 3-hour session optimized
+    num_epochs: int = 15
+    batch_size: int = 2
+    gradient_accumulation_steps: int = 8
+    learning_rate: float = 1e-4
+    warmup_ratio: float = 0.05
+    weight_decay: float = 0.01
     max_grad_norm: float = 0.3
     lr_scheduler_type: str = "cosine"
 

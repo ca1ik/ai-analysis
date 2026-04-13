@@ -82,9 +82,12 @@ class QLoRAFineTuner:
             bnb_4bit_use_double_quant=True,
         )
 
+        token = model_config.hf_token
+
         self._tokenizer = AutoTokenizer.from_pretrained(
             model_config.base_model,
             trust_remote_code=model_config.trust_remote_code,
+            token=token,
         )
         if self._tokenizer.pad_token is None:
             self._tokenizer.pad_token = self._tokenizer.eos_token
@@ -96,6 +99,7 @@ class QLoRAFineTuner:
             device_map="auto",
             trust_remote_code=model_config.trust_remote_code,
             torch_dtype=torch.float16,
+            token=token,
         )
         self._model = prepare_model_for_kbit_training(
             self._model, use_gradient_checkpointing=True
