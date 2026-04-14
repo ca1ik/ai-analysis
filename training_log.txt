@@ -1,0 +1,18 @@
+[09:32:53] GPU: NVIDIA GeForce RTX 5070
+[09:32:53] 
+==================================================
+[09:32:53] CHUNK #1
+[09:32:53]   Son checkpoint: step 200
+[09:32:53]   Kalan: 1600 steps
+[09:32:53] ==================================================
+[09:32:53]   trainer_state.json oluşturuluyor (step 200)...
+[09:32:53]   trainer_state.json oluşturuldu.
+[09:33:12]   VRAM: 7.8GB / 11.9GB
+[09:33:16]   Resuming from checkpoint-200...
+[09:36:40]   HATA: CUDA error: unknown error
+Search for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+[09:36:40]   30s bekleniyor, tekrar denenecek...
