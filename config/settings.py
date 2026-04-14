@@ -21,9 +21,8 @@ for d in [DATA_DIR, MODELS_DIR, TRAINING_SETS_DIR, EXPORTS_DIR]:
 
 @dataclass
 class ModelConfig:
-    # Switch models here — Qwen needs no token, LLaMA needs HF_TOKEN env var
-    # base_model: str = "Qwen/Qwen2.5-7B-Instruct"      # Open, no token
-    base_model: str = "meta-llama/Meta-Llama-3-8B-Instruct"  # Needs HF_TOKEN
+    # Qwen2.5: open model, no token/gated access needed. Excellent Turkish support.
+    base_model: str = "Qwen/Qwen2.5-7B-Instruct"
     hf_token: Optional[str] = os.environ.get("HF_TOKEN")  # NEVER hardcode
     quantization: str = "4bit"  # 4bit QLoRA for RTX 5070 12GB
     max_seq_length: int = 2048

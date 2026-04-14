@@ -98,7 +98,7 @@ class QLoRAFineTuner:
             quantization_config=bnb_config,
             device_map="auto",
             trust_remote_code=model_config.trust_remote_code,
-            torch_dtype=torch.float16,
+            dtype=torch.float16,
             token=token,
         )
         self._model = prepare_model_for_kbit_training(
@@ -126,15 +126,12 @@ class QLoRAFineTuner:
         })
         return dataset["train"], dataset["eval"]
 
-    def _formatting_func(self, examples):
-        """Format dataset examples to chat template strings."""
-        texts = []
-        for messages in examples["messages"]:
-            text = self._tokenizer.apply_chat_template(
-                messages, tokenize=False, add_generation_prompt=False
-            )
-            texts.append(text)
-        return texts
+    def _formatting_func(self, example):
+        """Format a single dataset example to chat template string."""
+        text = self._tokenizer.apply_chat_template(
+            example["messages"], tokenize=False, add_generation_prompt=False
+        )
+        return text
 
     def train(
         self,
@@ -186,14 +183,14 @@ class QLoRAFineTuner:
                 metric_for_best_model="eval_loss",
                 greater_is_better=False,
                 report_to="none",
-                max_seq_length=model_config.max_seq_length,
+                max_length=model_config.max_seq_length,
                 dataset_text_field=None,  # Using formatting_func
             )
 
             # Trainer
             trainer = SFTTrainer(
                 model=self._model,
-                tokenizer=self._tokenizer,
+                processing_class=self._tokenizer,
                 train_dataset=train_dataset,
                 eval_dataset=eval_dataset,
                 formatting_func=self._formatting_func,
