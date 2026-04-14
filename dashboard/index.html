@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Training Command Center</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <div>
+                    <h1>AI Command</h1>
+                    <span class="version">v2.0 · Social Good</span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="dashboard">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="training">
+                <span class="nav-icon">🎯</span>
+                <span>Training</span>
+            </a>
+            <a href="#" class="nav-item" data-page="chat">
+                <span class="nav-icon">💬</span>
+                <span>Model Test</span>
+            </a>
+            <a href="#" class="nav-item" data-page="logs">
+                <span class="nav-icon">📋</span>
+                <span>Logs</span>
+            </a>
+            <a href="#" class="nav-item" data-page="info">
+                <span class="nav-icon">ℹ️</span>
+                <span>Infrastructure</span>
+            </a>
+        </nav>
+
+        <!-- Level Badge in Sidebar -->
+        <div class="sidebar-level" id="sidebarLevel">
+            <div class="level-ring">
+                <svg viewBox="0 0 120 120">
+                    <circle class="ring-bg" cx="60" cy="60" r="52" />
+                    <circle class="ring-fill" cx="60" cy="60" r="52" id="levelRing" />
+                </svg>
+                <div class="level-number" id="levelNumber">1</div>
+            </div>
+            <div class="level-info">
+                <div class="level-tier" id="levelTier">Novice</div>
+                <div class="level-progress-text" id="levelProgressText">0%</div>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="gpu-mini" id="gpuMini">
+                <div class="gpu-mini-label">GPU</div>
+                <div class="gpu-mini-bar">
+                    <div class="gpu-mini-fill" id="gpuMiniFill"></div>
+                </div>
+                <div class="gpu-mini-temp" id="gpuMiniTemp">--°C</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Page: Dashboard -->
+        <section class="page active" id="page-dashboard">
+            <div class="page-header">
+                <h2>Dashboard</h2>
+                <div class="header-actions">
+                    <span class="status-badge" id="trainingBadge">IDLE</span>
+                    <span class="timestamp" id="lastUpdate">--:--:--</span>
+                </div>
+            </div>
+
+            <!-- Level Hero Card -->
+            <div class="level-hero" id="levelHero">
+                <div class="level-hero-left">
+                    <div class="hero-ring">
+                        <svg viewBox="0 0 200 200">
+                            <circle class="hero-ring-bg" cx="100" cy="100" r="85" />
+                            <circle class="hero-ring-fill" cx="100" cy="100" r="85" id="heroRing" />
+                        </svg>
+                        <div class="hero-level" id="heroLevel">1</div>
+                    </div>
+                </div>
+                <div class="level-hero-right">
+                    <div class="hero-tier" id="heroTier">Novice</div>
+                    <div class="hero-subtitle">Training Level</div>
+                    <div class="hero-xp-bar">
+                        <div class="hero-xp-fill" id="heroXpFill"></div>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-value" id="heroStep">0</span>
+                            <span class="hero-stat-label">Steps</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-value" id="heroProgress">0%</span>
+                            <span class="hero-stat-label">Progress</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-value" id="heroLoss">--</span>
+                            <span class="hero-stat-label">Loss</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon gpu-icon">🖥️</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="gpuUtil">--%</div>
+                        <div class="stat-label">GPU Utilization</div>
+                        <div class="stat-bar"><div class="stat-bar-fill gpu-bar" id="gpuUtilBar"></div></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon temp-icon">🌡️</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="gpuTemp">--°C</div>
+                        <div class="stat-label">Temperature</div>
+                        <div class="stat-bar"><div class="stat-bar-fill temp-bar" id="gpuTempBar"></div></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon power-icon">⚡</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="gpuPower">--W</div>
+                        <div class="stat-label">Power Draw</div>
+                        <div class="stat-bar"><div class="stat-bar-fill power-bar" id="gpuPowerBar"></div></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon vram-icon">💾</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="gpuVram">-- / --</div>
+                        <div class="stat-label">VRAM Usage</div>
+                        <div class="stat-bar"><div class="stat-bar-fill vram-bar" id="gpuVramBar"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Training Loss</h3>
+                    <canvas id="lossChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>GPU Metrics (Live)</h3>
+                    <canvas id="gpuChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Checkpoints -->
+            <div class="card">
+                <h3>Checkpoints</h3>
+                <div class="checkpoints-list" id="checkpointsList">
+                    <div class="empty-state">No checkpoints yet</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Training Control -->
+        <section class="page" id="page-training">
+            <div class="page-header">
+                <h2>Training Control</h2>
+            </div>
+
+            <div class="training-controls">
+                <div class="card training-config">
+                    <h3>⚙️ Configuration</h3>
+                    <div class="config-grid">
+                        <div class="config-item">
+                            <label>Steps per Chunk</label>
+                            <input type="number" id="cfgStepsPerChunk" value="50" min="10" max="200">
+                            <span class="config-hint">Auto-restart every N steps</span>
+                        </div>
+                        <div class="config-item">
+                            <label>Total Steps</label>
+                            <input type="number" id="cfgTotalSteps" value="1701" min="100" max="10000">
+                        </div>
+                        <div class="config-item">
+                            <label>Batch Size</label>
+                            <input type="number" id="cfgBatchSize" value="1" min="1" max="4">
+                        </div>
+                        <div class="config-item">
+                            <label>Gradient Accumulation</label>
+                            <input type="number" id="cfgGradAccum" value="8" min="1" max="32">
+                        </div>
+                        <div class="config-item">
+                            <label>Learning Rate</label>
+                            <input type="text" id="cfgLR" value="5e-5">
+                        </div>
+                        <div class="config-item">
+                            <label>Max Seq Length</label>
+                            <input type="number" id="cfgMaxSeq" value="1024" min="256" max="4096" step="256">
+                        </div>
+                        <div class="config-item">
+                            <label>GPU Power Limit (W)</label>
+                            <input type="number" id="cfgGpuPower" value="175" min="100" max="275">
+                            <span class="config-hint">RTX 5070: 175W = 70%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="training-actions">
+                    <button class="btn btn-start" id="btnStart" onclick="startTraining()">
+                        <span class="btn-icon">▶</span> Start Training
+                    </button>
+                    <button class="btn btn-stop" id="btnStop" onclick="stopTraining()" disabled>
+                        <span class="btn-icon">⏹</span> Stop Training
+                    </button>
+                </div>
+
+                <div class="card training-progress" id="trainingProgress" style="display:none;">
+                    <h3>Current Session</h3>
+                    <div class="progress-large">
+                        <div class="progress-bar-large">
+                            <div class="progress-fill-large" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">0 / 1701 steps</div>
+                    </div>
+                    <div class="progress-stats">
+                        <div><strong>Started:</strong> <span id="progStarted">--</span></div>
+                        <div><strong>Chunks:</strong> <span id="progChunks">0</span></div>
+                        <div><strong>Errors:</strong> <span id="progErrors">0</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Chat / Model Test -->
+        <section class="page" id="page-chat">
+            <div class="page-header">
+                <h2>💬 Model Test Lab</h2>
+                <span class="model-badge" id="chatModelBadge">No model loaded</span>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-welcome">
+                        <div class="chat-welcome-icon">🤖</div>
+                        <h3>Social Good AI</h3>
+                        <p>Train edilmiş modelinizi test edin. Türkçe veya İngilizce soru sorun.</p>
+                        <div class="chat-suggestions">
+                            <button class="suggestion" onclick="sendSuggestion('Deprem sonrası ilk yardım adımlarını anlat')">🏥 Deprem İlk Yardım</button>
+                            <button class="suggestion" onclick="sendSuggestion('How can I help my community with education?')">📚 Community Education</button>
+                            <button class="suggestion" onclick="sendSuggestion('Çevreyi korumak için neler yapabilirim?')">🌱 Çevre Koruma</button>
+                            <button class="suggestion" onclick="sendSuggestion('Explain cyberbullying prevention strategies')">🛡️ Cyberbullying</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <div class="chat-settings">
+                        <label>Temp: <input type="range" id="chatTemp" min="0.1" max="1.5" step="0.1" value="0.7"> <span id="chatTempVal">0.7</span></label>
+                        <label>Max tokens: <input type="number" id="chatMaxTokens" value="512" min="64" max="2048" step="64"></label>
+                    </div>
+                    <div class="chat-input-row">
+                        <textarea id="chatInput" placeholder="Mesajınızı yazın..." rows="1"></textarea>
+                        <button class="btn-send" id="btnSend" onclick="sendMessage()">
+                            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Logs -->
+        <section class="page" id="page-logs">
+            <div class="page-header">
+                <h2>📋 Training Logs</h2>
+                <button class="btn btn-small" onclick="refreshLogs()">Refresh</button>
+            </div>
+            <div class="log-container">
+                <pre class="log-output" id="logOutput">Loading...</pre>
+            </div>
+        </section>
+
+        <!-- Page: Infrastructure Info -->
+        <section class="page" id="page-info">
+            <div class="page-header">
+                <h2>ℹ️ Infrastructure</h2>
+            </div>
+            <div class="info-grid" id="infoGrid">
+                <div class="info-card">
+                    <h3>⏳ Loading...</h3>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
