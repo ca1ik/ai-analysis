@@ -1,0 +1,115 @@
+﻿
+[10:05:36] ==================================================
+[10:05:36] CHUNK: step 200 -> 250
+[10:05:36]   Kalan: 1501 steps
+[10:05:36] ==================================================
+[10:05:45]   Model loaded: 7.2GB VRAM
+[10:05:50]   Training basliyor...
+[2026-04-15 03:02:54] [ORCH] ============================================================
+[2026-04-15 03:02:54] [ORCH]   7-HOUR TRAINING SESSION STARTED
+[2026-04-15 03:02:54] [ORCH]   Start:    2026-04-15 03:02:54
+[2026-04-15 03:02:54] [ORCH]   Deadline: 2026-04-15 10:02:54
+[2026-04-15 03:02:54] [ORCH]   GPU Power Limit: 165W
+[2026-04-15 03:02:54] [ORCH]   Cooldown: 60s between chunks
+[2026-04-15 03:02:54] [ORCH]   Current step: 200/1701
+[2026-04-15 03:02:54] [ORCH] ============================================================
+[2026-04-15 03:02:54] [ORCH] GPU power limit set to 165W
+[2026-04-15 03:02:54] [ORCH] ─── Chunk #1 | Step 200/1701 | 420min remaining ───
+[2026-04-15 03:02:54]   GPU Temperature: 44°C
+[2026-04-15 03:02:56] ============================================================
+[2026-04-15 03:02:56]   CHUNK START: step 200 → 250
+[2026-04-15 03:02:56]   Remaining: 1501 steps | Target: 1701
+[2026-04-15 03:02:56]   GPU Temp: 44°C | Time: 03:02
+[2026-04-15 03:02:56] ============================================================
+[2026-04-15 03:02:59]   Loading tokenizer...
+[2026-04-15 03:03:00]   Loading model (4-bit QLoRA)...
+[2026-04-15 03:03:15]   [ERROR] AttributeError: 'torch._C._CudaDeviceProperties' object has no attribute 'total_mem'
+[2026-04-15 03:03:15]   Crashed after 0.3min
+[2026-04-15 03:03:16] [ORCH]   [CRASH #1] Consecutive: 1/5
+[2026-04-15 03:03:16] [ORCH]   Backoff: 30s before retry...
+[2026-04-15 03:03:46] [ORCH] ─── Chunk #2 | Step 200/1701 | 419min remaining ───
+[2026-04-15 03:03:46]   GPU Temperature: 44°C
+[2026-04-15 03:03:47] ============================================================
+[2026-04-15 03:03:47]   CHUNK START: step 200 → 250
+[2026-04-15 03:03:47]   Remaining: 1501 steps | Target: 1701
+[2026-04-15 03:03:47]   GPU Temp: 44°C | Time: 03:03
+[2026-04-15 03:03:47] ============================================================
+[2026-04-15 03:03:49]   Loading tokenizer...
+[2026-04-15 03:03:50]   Loading model (4-bit QLoRA)...
+[2026-04-15 03:03:57]   Model loaded: 7.2/11.9 GB VRAM
+[2026-04-15 03:03:58]   LoRA params: 161,480,704 / 4,514,452,992 (3.58%)
+[2026-04-15 03:04:03]   Training starting...
+[2026-04-15 03:09:36]   [ERROR] AcceleratorError: CUDA error: unknown error
+Search for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+[2026-04-15 03:09:36]   Crashed after 5.8min
+[2026-04-15 03:09:37] [ORCH]   [CRASH #2] Consecutive: 2/5
+[2026-04-15 03:09:37] [ORCH]   Backoff: 60s before retry...
+[2026-04-15 03:15:38] [ORCH] ============================================================
+[2026-04-15 03:15:38] [ORCH]   7-HOUR TRAINING SESSION STARTED
+[2026-04-15 03:15:38] [ORCH]   Start:    2026-04-15 03:15:38
+[2026-04-15 03:15:38] [ORCH]   Deadline: 2026-04-15 10:15:38
+[2026-04-15 03:15:38] [ORCH]   GPU Power Limit: 130W
+[2026-04-15 03:15:38] [ORCH]   Cooldown: 90s between chunks
+[2026-04-15 03:15:38] [ORCH]   Current step: 200/1701
+[2026-04-15 03:15:38] [ORCH] ============================================================
+[2026-04-15 03:15:38] [ORCH] GPU power limit set to 130W
+[2026-04-15 03:15:38] [ORCH] ─── Chunk #1 | Step 200/1701 | 420min remaining ───
+[2026-04-15 03:15:38]   GPU Temperature: 44°C
+[2026-04-15 03:15:39] ============================================================
+[2026-04-15 03:15:39]   CHUNK START: step 200 → 225
+[2026-04-15 03:15:39]   Remaining: 1501 steps | Target: 1701
+[2026-04-15 03:15:39]   GPU Temp: 44°C | Time: 03:15
+[2026-04-15 03:15:39] ============================================================
+[2026-04-15 03:15:41]   Loading tokenizer...
+[2026-04-15 03:15:42]   Loading model (4-bit QLoRA)...
+[2026-04-15 03:15:47]   Model loaded: 7.2/11.9 GB VRAM
+[2026-04-15 03:15:48]   LoRA params: 161,480,704 / 4,514,452,992 (3.58%)
+[2026-04-15 03:15:52]   Training starting...
+[2026-04-15 03:15:54]   [ERROR] OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 MiB. GPU 0 has a total capacity of 11.94 GiB of which 401.91 MiB is free. 10.15 GiB allowed; Of the allocated memory 8.85 GiB is allocated by PyTorch, and 1.30 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+[2026-04-15 03:15:54]   Crashed after 0.3min
+[2026-04-15 03:15:54] [ORCH]   [CRASH #1] Consecutive: 1/5
+[2026-04-15 03:15:54] [ORCH]   Backoff: 30s before retry...
+[2026-04-15 03:16:24] [ORCH] ─── Chunk #2 | Step 200/1701 | 419min remaining ───
+[2026-04-15 03:16:24]   GPU Temperature: 44°C
+[2026-04-15 03:16:25] ============================================================
+[2026-04-15 03:16:25]   CHUNK START: step 200 → 225
+[2026-04-15 03:16:25]   Remaining: 1501 steps | Target: 1701
+[2026-04-15 03:16:25]   GPU Temp: 44°C | Time: 03:16
+[2026-04-15 03:16:25] ============================================================
+[2026-04-15 03:16:27]   Loading tokenizer...
+[2026-04-15 03:16:29]   Loading model (4-bit QLoRA)...
+[2026-04-15 03:16:34]   Model loaded: 7.2/11.9 GB VRAM
+[2026-04-15 03:16:35]   LoRA params: 161,480,704 / 4,514,452,992 (3.58%)
+[2026-04-15 03:16:39]   Training starting...
+[2026-04-15 03:16:40]   [ERROR] OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 MiB. GPU 0 has a total capacity of 11.94 GiB of which 503.20 MiB is free. 10.15 GiB allowed; Of the allocated memory 8.85 GiB is allocated by PyTorch, and 1.30 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+[2026-04-15 03:16:40]   Crashed after 0.3min
+[2026-04-15 03:16:41] [ORCH]   [CRASH #2] Consecutive: 2/5
+[2026-04-15 03:16:41] [ORCH]   Backoff: 60s before retry...
+[2026-04-15 03:17:41] [ORCH] ─── Chunk #3 | Step 200/1701 | 418min remaining ───
+[2026-04-15 03:17:41]   GPU Temperature: 43°C
+[2026-04-15 03:17:42] ============================================================
+[2026-04-15 03:17:42]   CHUNK START: step 200 → 225
+[2026-04-15 03:17:42]   Remaining: 1501 steps | Target: 1701
+[2026-04-15 03:17:42]   GPU Temp: 43°C | Time: 03:17
+[2026-04-15 03:17:42] ============================================================
+[2026-04-15 03:17:44]   Loading tokenizer...
+[2026-04-15 03:17:45]   Loading model (4-bit QLoRA)...
+[2026-04-15 03:17:50]   Model loaded: 7.2/11.9 GB VRAM
+[2026-04-15 03:17:51]   LoRA params: 161,480,704 / 4,514,452,992 (3.58%)
+[2026-04-15 03:17:55]   Training starting...
+[2026-04-15 03:23:45] [ORCH]   Unknown exit code: 4294967295 — treating as crash
+[2026-04-15 03:25:12] [ORCH] ============================================================
+[2026-04-15 03:25:12] [ORCH]   7-HOUR TRAINING SESSION STARTED
+[2026-04-15 03:25:12] [ORCH]   Start:    2026-04-15 03:25:12
+[2026-04-15 03:25:12] [ORCH]   Deadline: 2026-04-15 10:25:12
+[2026-04-15 03:25:12] [ORCH]   GPU Power Limit: 130W
+[2026-04-15 03:25:12] [ORCH]   Cooldown: 90s between chunks
+[2026-04-15 03:25:12] [ORCH]   Current step: 225/1701
+[2026-04-15 03:25:12] [ORCH] ============================================================
+[2026-04-15 03:25:12] [ORCH] GPU power limit set to 130W
+[2026-04-15 03:25:12] [ORCH] ─── Chunk #1 | Step 225/1701 | 420min remaining ───
+[2026-04-15 03:25:13]   GPU Temperature: 41°C
